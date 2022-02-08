@@ -1,0 +1,96 @@
+version: '3.5'
+services:
+  api:
+    build: ./
+    #image: phantoscope/api-server:v0.3.0
+    #image: phantoscope_api:latest
+    ports:
+      - "5000:5000"
+    environment:
+      - MINIO_ADDR=${LOCAL_ADDRESS}:9000
+      - UPLOAD_FOLDER=/tmp
+      - MILVUS_ADDR=milvus
+      - SEARCH_IMAGES_DATABASE_EP=mysql://root:root@mysql:3306/search
+      - SEARCH_IMAGES_DATABASE_USERNAME=root
+      - SEARCH_IMAGES_DATABASE_PASSWD=root
+      - MILVUS_PORT=19530
+      - MINIO_BUCKET_NUM=20
+      - MONGO_ADDR=mongo
+      - MONGO_PORT=27017
+      - MONGO_USERNAME=root
+      - MONGO_PASSWD=passwd
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - mysql
+      - milvus
+      - minio
+      - mongo
+    networks:
+      - image-search-network
+  mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=passwd
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./ps/mongo:/data/db
+    networks:
+      - image-search-network
+  milvus:
+    image: milvusdb/milvus:1.1.0-cpu-d050721-5e559c
+    ports:
+      - "19530:19530"
+      - "19121:19121"
+    volumes:
+      - ./milvus/conf:/var/lib/milvus/conf
+      - ./data/milvus/logs:/var/lib/milvus/logs
+      - ./data/milvus/wal:/var/lib/milvus/wal
+      - ./data/milvus/db:/var/lib/milvus/db
+    depends_on:
+      - mysql
+    networks:
+      - image-search-network
+  minio:
+    image: minio/minio:latest
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./ps/minio/data:/data
+    command: ["server","/data"]
+    networks:
+      - image-search-network
+  imagepreview:
+    image: phantoscope/preview:0.2.0
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./imagepreview/nginx/conf.d:/etc/nginx/conf.d
+      - ./imagepreview/.env:/usr/share/nginx/html/.env
+    networks:
+      - image-search-network
+  mysql:
+    image: mysql:5.7.37
+    #container_name: mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    env_file:
+      - ./mysql/config/mysql.env
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql/config/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./mysql/bin/mysql:/docker-entrypoint-initdb.d/
+      - ./data/mysql:/var/lib/mysql
+    networks:
+      - image-search-network
+      
+
+networks:
+  image-search-network:
+    name: milvus_image_serach_default

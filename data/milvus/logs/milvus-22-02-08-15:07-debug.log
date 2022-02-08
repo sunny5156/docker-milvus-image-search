@@ -1,0 +1,23 @@
+[2022-02-08 15:07:42,199][DEBUG][ENGINE][CheckCpuInstructionSet][milvus_server] Supported CPU instruction sets: avx512, avx2, sse4_2
+[2022-02-08 15:07:42,203][DEBUG][ENGINE][Initialize][milvus_server] FAISS hook AVX512
+[2022-02-08 15:07:42,207][DEBUG][ENGINE][Build][milvus_server] MetaUri: mysql://root:root@mysql:3306/db_milvus_images_search
+
+[2022-02-08 15:07:42,207][DEBUG][ENGINE][Initialize][milvus_server] MySQL connection pool: maximum pool size = 8
+[2022-02-08 15:07:42,288][DEBUG][ENGINE][CleanUpShadowFiles][milvus_server] CleanUp: SELECT table_name FROM information_schema.tables WHERE table_schema = 'db_milvus_images_search' AND table_name = 'TableFiles';
+[2022-02-08 15:07:42,289][DEBUG][ENGINE][CleanUpShadowFiles][milvus_server] Remove collection file type as NEW
+[2022-02-08 15:07:42,289][DEBUG][ENGINE][CleanUpShadowFiles][milvus_server] CleanUp: DELETE FROM TableFiles WHERE file_type IN (0,5,6);
+[2022-02-08 15:07:42,290][DEBUG][ENGINE][CleanUpShadowFiles][milvus_server] Clean 1 files
+[2022-02-08 15:07:42,290][DEBUG][ENGINE][Initialize][milvus_server] Initialize: CREATE TABLE IF NOT EXISTS Tables (id BIGINT PRIMARY KEY AUTO_INCREMENT,table_id VARCHAR(255) UNIQUE NOT NULL,state INT NOT NULL,dimension SMALLINT NOT NULL,created_on BIGINT NOT NULL,flag BIGINT DEFAULT 0 NOT NULL,index_file_size BIGINT DEFAULT 1024 NOT NULL,engine_type INT DEFAULT 1 NOT NULL,index_params VARCHAR(512) NOT NULL,metric_type INT DEFAULT 1 NOT NULL,owner_table VARCHAR(255) NOT NULL,partition_tag VARCHAR(255) NOT NULL,version VARCHAR(64) DEFAULT '1.1.0',flush_lsn BIGINT DEFAULT 0 NOT NULL);
+[2022-02-08 15:07:42,290][DEBUG][ENGINE][Initialize][milvus_server] Initialize: CREATE TABLE IF NOT EXISTS TableFiles (id BIGINT PRIMARY KEY AUTO_INCREMENT,table_id VARCHAR(255) NOT NULL,segment_id VARCHAR(255) NOT NULL,engine_type INT DEFAULT 1 NOT NULL,file_id VARCHAR(255) NOT NULL,file_type INT DEFAULT 0 NOT NULL,file_size BIGINT DEFAULT 0 NOT NULL,row_count BIGINT DEFAULT 0 NOT NULL,updated_time BIGINT NOT NULL,created_on BIGINT NOT NULL,date INT DEFAULT -1 NOT NULL,flush_lsn BIGINT DEFAULT 0 NOT NULL);
+[2022-02-08 15:07:42,291][DEBUG][ENGINE][Initialize][milvus_server] Initialize: CREATE TABLE IF NOT EXISTS Environment (global_lsn BIGINT NOT NULL);
+[2022-02-08 15:07:42,291][DEBUG][ENGINE][Initialize][milvus_server] Initialize: CREATE TABLE IF NOT EXISTS Fields (collection_id VARCHAR(255) NOT NULL,field_name VARCHAR(255) NOT NULL,field_type INT DEFAULT 0 NOT NULL,field_params VARCHAR(255) NOT NULL);
+[2022-02-08 15:07:42,292][DEBUG][ENGINE][AllCollections][milvus_server] AllCollections: SELECT id, table_id, dimension, engine_type, index_params, index_file_size, metric_type ,owner_table, partition_tag, version, flush_lsn FROM Tables WHERE state <> 1;
+[2022-02-08 15:07:42,293][DEBUG][ENGINE][GetGlobalLastLSN][milvus_server] GetGlobalLastLSN: SELECT global_lsn FROM Environment;
+[2022-02-08 15:07:42,296][DEBUG][ENGINE][AllCollections][milvus_server] AllCollections: SELECT id, table_id, dimension, engine_type, index_params, index_file_size, metric_type ,owner_table, partition_tag, version, flush_lsn FROM Tables WHERE state <> 1;
+[2022-02-08 15:07:42,297][DEBUG][WAL][Init][milvus_server] start_lsn 0 end_lsn 0
+[2022-02-08 15:10:12,620][DEBUG][ENGINE][BackgroundWalThread][wal_thread] WAL background thread exit
+[2022-02-08 15:10:12,621][DEBUG][ENGINE][BackgroundIndexThread][index_thread] DB background thread exit
+[2022-02-08 15:10:12,621][DEBUG][ENGINE][CleanUpShadowFiles][milvus_server] CleanUp: SELECT table_name FROM information_schema.tables WHERE table_schema = 'db_milvus_images_search' AND table_name = 'TableFiles';
+[2022-02-08 15:10:12,622][DEBUG][ENGINE][CleanUpShadowFiles][milvus_server] Remove collection file type as NEW
+[2022-02-08 15:10:12,622][DEBUG][ENGINE][CleanUpShadowFiles][milvus_server] CleanUp: DELETE FROM TableFiles WHERE file_type IN (0,5,6);
+[2022-02-08 15:10:12,622][DEBUG][ENGINE][CleanUpShadowFiles][milvus_server] Clean 1 files

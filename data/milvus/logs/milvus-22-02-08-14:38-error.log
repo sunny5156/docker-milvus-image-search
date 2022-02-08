@@ -1,0 +1,4 @@
+[2022-02-08 14:41:41,789][ERROR][ENGINE][HandleException][wal_thread] Failed to set global lsn:Server shutdown in progress
+[2022-02-08 14:41:41,791][ERROR][ENGINE][HandleException][milvus_server] Failed to clean up with ttl:Can't connect to MySQL server on 'mysql' (111)
+[2022-02-08 14:41:41,792][ERROR][ENGINE][HandleException][milvus_server] Failed to get files to index:Can't connect to MySQL server on 'mysql' (111)
+[2022-02-08 14:41:41,793][ERROR][ENGINE][HandleException][milvus_server] Failed to clean shadow files:Can't connect to MySQL server on 'mysql' (111)

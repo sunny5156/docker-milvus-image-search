@@ -1,0 +1,168 @@
+[2022-02-08 13:35:40,857][INFO][SERVER][Check][milvus_server] InstanceLockCheck passed.
+[2022-02-08 13:35:40,857][INFO][SERVER][Check][milvus_server] InstanceLockCheck passed.
+[2022-02-08 13:35:40,857][INFO][SERVER][Start][milvus_server] Milvus Release version: v1.1.0, built at 2021-05-06 14:50.43
+[2022-02-08 13:35:40,857][INFO][SERVER][Start][milvus_server] CPU edition
+[2022-02-08 13:35:40,858][INFO][SERVER][CheckCpuInstructionSet][milvus_server] Supported CPU instruction sets: avx512, avx2, sse4_2
+[2022-02-08 13:35:40,860][INFO][SERVER][LogConfigInFile][milvus_server] 
+
+***************Config in file***************
+
+version: 0.5
+cluster:
+  enable: false
+  role: rw
+general:
+  timezone: UTC+8
+  meta_uri: mysql://root:root@mysql:3306/db_milvus_images_search
+network:
+  bind.address: 0.0.0.0
+  bind.port: 19530
+  http.enable: true
+  http.port: 19121
+storage:
+  path: /var/lib/milvus
+  auto_flush_interval: 1
+wal:
+  enable: true
+  recovery_error_ignore: false
+  buffer_size: 256MB
+  path: /var/lib/milvus/wal
+cache:
+  cache_size: 4GB
+  insert_buffer_size: 2GB
+  preload_collection: ~
+gpu:
+  enable: false
+  cache_size: 1GB
+  gpu_search_threshold: 1000
+  search_devices:
+    - gpu0
+  build_index_devices:
+    - gpu0
+fpga:
+  enable: false
+  search_devices:
+    - fpga0
+logs:
+  level: debug
+  trace.enable: true
+  path: /var/lib/milvus/logs
+  max_log_file_size: 1024MB
+  log_rotate_num: 0
+  log_to_stdout: false
+  log_to_file: true
+metric:
+  enable: false
+  address: 127.0.0.1
+  port: 9091
+[2022-02-08 13:35:40,860][INFO][SERVER][LogCpuInfo][milvus_server] 
+
+***************CPU***************
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 85
+model name	: Intel(R) Xeon(R) Silver 4114 CPU @ 2.20GHz
+stepping	: 4
+microcode	: 0x2000043
+cpu MHz		: 2194.844
+cache size	: 14080 KB
+physical id	: 6
+siblings	: 1
+core id		: 0
+cpu cores	: 1
+apicid		: 6
+initial apicid	: 6
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon nopl xtopology tsc_reliable nonstop_tsc eagerfpu pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch ibrs ibpb stibp fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 invpcid rtm mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec arat pku ospke spec_ctrl intel_stibp arch_capabilities
+bogomips	: 4389.68
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 43 bits physical, 48 bits virtual
+power management:
+
+
+[2022-02-08 13:35:40,860][INFO][SERVER][LogConfigInMem][milvus_server] 
+
+***************Config in memory***************
+
+{
+   "cache": {
+      "cache_insert_data": "false",
+      "cache_size": "4GB",
+      "cpu_cache_threshold": "0.7",
+      "insert_buffer_size": "2GB",
+      "preload_collection": ""
+   },
+   "cluster": {
+      "enable": "false",
+      "role": "rw"
+   },
+   "db_config": {
+      "archive_days_threshold": "0",
+      "archive_disk_threshold": "0"
+   },
+   "engine_config": {
+      "max_partition_num": "4096",
+      "omp_thread_num": "0",
+      "simd_type": "auto",
+      "use_blas_threshold": "1100"
+   },
+   "general": {
+      "meta_uri": "mysql://root:root@mysql:3306/db_milvus_images_search",
+      "timezone": "UTC+8"
+   },
+   "logs": {
+      "level": "debug",
+      "log_rotate_num": "0",
+      "log_to_file": "true",
+      "log_to_stdout": "false",
+      "max_log_file_size": "1024MB",
+      "path": "/var/lib/milvus/logs",
+      "trace.enable": "true"
+   },
+   "metric": {
+      "address": "127.0.0.1",
+      "cluster_label": "milvus_cluster",
+      "enable": "false",
+      "instance_label": "",
+      "port": "9091"
+   },
+   "network": {
+      "bind.address": "0.0.0.0",
+      "bind.port": "19530",
+      "http.enable": "true",
+      "http.port": "19121"
+   },
+   "storage": {
+      "auto_flush_interval": "1",
+      "path": "/var/lib/milvus"
+   },
+   "tracing_config": {
+      "json_config_path": ""
+   },
+   "wal": {
+      "buffer_size": "256MB",
+      "enable": "true",
+      "path": "/var/lib/milvus/wal",
+      "recovery_error_ignore": "false"
+   }
+}
+[2022-02-08 13:35:40,867][INFO][ENGINE][Build][milvus_server] Using MySQL
+[2022-02-08 13:35:40,879][INFO][SERVER][HandleSignal][milvus_server] Release lock!10
+[2022-02-08 13:35:40,879][INFO][SERVER][HandleSignal][milvus_server] Server received critical signal: 10
+[2022-02-08 13:35:40,879][INFO][SERVER][PrintStacktrace][milvus_server] Call stack:
+[2022-02-08 13:35:40,880][INFO][SERVER][PrintStacktrace][milvus_server] /var/lib/milvus/bin/milvus_server() [0x65c6bc]
+[2022-02-08 13:35:40,880][INFO][SERVER][PrintStacktrace][milvus_server] /var/lib/milvus/bin/milvus_server() [0x65d1a4]
+[2022-02-08 13:35:40,880][INFO][SERVER][PrintStacktrace][milvus_server] /lib64/libc.so.6(+0x36400) [0x7fbb730db400]
+[2022-02-08 13:35:40,880][INFO][SERVER][PrintStacktrace][milvus_server] /lib64/libc.so.6(kill+0x7) [0x7fbb730db657]
+[2022-02-08 13:35:40,880][INFO][SERVER][PrintStacktrace][milvus_server] /var/lib/milvus/bin/milvus_server() [0x4dc2f5]
+[2022-02-08 13:35:40,880][INFO][SERVER][PrintStacktrace][milvus_server] /var/lib/milvus/bin/milvus_server() [0x4dd71f]
+[2022-02-08 13:35:40,880][INFO][SERVER][PrintStacktrace][milvus_server] /var/lib/milvus/bin/milvus_server() [0x4df7bb]
+[2022-02-08 13:35:40,880][INFO][SERVER][PrintStacktrace][milvus_server] /var/lib/milvus/bin/milvus_server() [0x427fca]
+[2022-02-08 13:35:40,880][INFO][SERVER][PrintStacktrace][milvus_server] /lib64/libc.so.6(__libc_start_main+0xf5) [0x7fbb730c7555]
+[2022-02-08 13:35:40,880][INFO][SERVER][PrintStacktrace][milvus_server] /var/lib/milvus/bin/milvus_server() [0x432407]
