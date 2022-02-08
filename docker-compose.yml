@@ -38,7 +38,8 @@ services:
     networks:
       - image-search-network
   milvus:
-    image: milvusdb/milvus:1.1.0-cpu-d050721-5e559c
+    #image: milvusdb/milvus:1.1.0-cpu-d050721-5e559c
+    build: ./milvus
     ports:
       - "19530:19530"
       - "19121:19121"
